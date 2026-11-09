@@ -20,9 +20,9 @@ def fetch_weather(city: str, key: str) -> dict:
     except Exception:
         pass
     return {
-        "condition": "Rain",
-        "description": "light rain (offline fallback)",
-        "temp": 12,
+        "condition": "Clouds",
+        "description": "overcast (offline fallback)",
+        "temp": 24,
         "city": city,
     }
 
@@ -31,8 +31,17 @@ def palette_for(condition: str) -> str:
     """Map weather condition to a palette key defined in styles.PALETTES."""
     c = condition.lower()
     if c == "clear":
-        return "flow"
-    return "fatigue"
+        return "clear"
+    if c == "clouds":
+        return "clouds"
+    if c in ("rain", "drizzle"):
+        return "rain"
+    if c == "thunderstorm":
+        return "thunderstorm"
+    if c == "snow":
+        return "snow"
+    # mist, haze, fog, smoke, dust, etc.
+    return "mist"
 
 
 def mood_label(condition: str) -> str:
@@ -40,8 +49,12 @@ def mood_label(condition: str) -> str:
     c = condition.lower()
     if c == "clear":
         return "bright — flow-oriented"
-    if c in ("rain", "drizzle", "thunderstorm"):
+    if c == "clouds":
+        return "gentle — contemplative"
+    if c in ("rain", "drizzle"):
         return "introspective — meditative"
+    if c == "thunderstorm":
+        return "charged — electric"
     if c == "snow":
         return "crystalline — still"
-    return "soft — contemplative"
+    return "soft — hazy"

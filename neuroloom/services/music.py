@@ -1,4 +1,4 @@
-"""YouTube ID lookup (no API key) + embedded player."""
+"""YouTube ID lookup (no API key) + embedded playable player."""
 import re
 import urllib.parse
 import requests
@@ -21,19 +21,20 @@ def get_youtube_id(title: str, artist: str) -> str | None:
 
 
 def render_player(title: str, artist: str) -> None:
-    """Embed a YouTube player inline in the Streamlit app."""
+    """Embed a full YouTube player inline — play, pause, scrub, fullscreen."""
     video_id = get_youtube_id(title, artist)
     if not video_id:
         st.caption("Player unavailable — try again in a moment.")
         return
     embed = f"""
-    <div style="border-radius:14px; overflow:hidden; box-shadow:0 8px 28px rgba(0,0,0,0.18); margin-top:10px;">
-      <iframe width="100%" height="80"
-        src="https://www.youtube.com/embed/{video_id}?autoplay=0&controls=1&modestbranding=1&rel=0"
+    <div style="border-radius:14px; overflow:hidden;
+                box-shadow:0 8px 28px rgba(0,0,0,0.22); margin-top:12px;">
+      <iframe width="100%" height="180"
+        src="https://www.youtube.com/embed/{video_id}?controls=1&modestbranding=1&rel=0&showinfo=0"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
       </iframe>
     </div>
     """
-    components.html(embed, height=95)
+    components.html(embed, height=200)
