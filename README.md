@@ -2,7 +2,7 @@
 
 A Streamlit app that turns a journal entry into a 5-song playlist, moving you step by step from your current mood towards a target mood.
 
-Built for the Roll, Commit, Ship! hackathon at UTSAV 2026, where it won 2nd place.
+Built by Vamika Bhat and Varsha Kodi for the Roll, Commit, Ship! hackathon at UTSAV 2026, where it won 2nd place.
 
 **Contents:** [How it works](#how-it-works) · [Example](#example) · [Other features](#other-features) · [Run it](#run-it) · [Project layout](#project-layout) · [Limitations](#limitations)
 
